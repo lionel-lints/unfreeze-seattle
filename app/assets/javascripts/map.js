@@ -12,7 +12,7 @@ $(function() {
 
     var mapDiv = document.getElementById('map-canvas');
 
-    map.data.loadGeoJson('localhost:3000/lib/assets/geojson');
+    map.data.loadGeoJson('/geojson/ballard.geojson');
 
     // google.maps.event.addListener(map, 'click', addMarker);
   }
