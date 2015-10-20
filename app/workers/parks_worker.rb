@@ -14,6 +14,11 @@
 
 #within_box(location, 47.652524500386484, -122.33551025390625, 47.504301372234416, -122.24349975585938) AND city_feature='parks'
 
+#DT Quadrant
+
+#within_box(location, 47.62150693350129, -122.35756874084473, 47.590025949215594, -122.32048988342285) AND city_feature='parks'
+
+=begin
 
 class ParksWorker
   include Sidekiq::Worker
@@ -46,3 +51,4 @@ class LinksWorker
     site.links << link
   end
 end
+=end
