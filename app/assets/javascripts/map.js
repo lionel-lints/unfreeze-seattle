@@ -12,18 +12,16 @@ $(function() {
 
     var mapDiv = document.getElementById('map-canvas');
 
+    map.data.loadGeoJson('localhost:3000/lib/assets/geojson');
+
     // google.maps.event.addListener(map, 'click', addMarker);
   }
 
 
-  // function initialize() {
-  //   var mapCanvas = document.getElementById('map-canvas');
-  //   var mapOptions = {
-  //     center: new google.maps.LatLng(39.5, -98.35),
-  //     zoom: 4,
-  //     mapTypeId: google.maps.MapTypeId.ROADMAP
-  //   }
-  //   var map = new google.maps.Map(mapCanvas, mapOptions)
+  // function loadGeoJsonString(geoString) {
+  //   var geojson = JSON.parse(geoString);
+  //   map.data.addGeoJson(geojson);
+  //   zoom(map);
   // }
 
   initialize();
