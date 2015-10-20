@@ -1,7 +1,11 @@
 class Park < ActiveRecord::Base
   belongs_to :neighborhood
 
-  @url = "AND city_feature= 'Parks'"
+  attr_accessor: :url
+
+  def initialize
+    @url = "AND city_feature='parks'"
+  end
+
 end
 
-neibhrohood[@url]
