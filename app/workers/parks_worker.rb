@@ -1,3 +1,4 @@
+
 #NW Quadrant
 
 #within_box(location, 47.74448918324826, -122.43232727050781, 47.601579435823446, -122.3127007484436) AND city_feature='parks'
@@ -52,3 +53,5 @@ class LinksWorker
   end
 end
 =end
+
+
