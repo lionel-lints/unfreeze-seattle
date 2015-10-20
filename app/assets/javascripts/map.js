@@ -14,20 +14,25 @@ $(function() {
 
     // geojson = JSON.parse('geojson/ballard.geojson');
 
-    fileName.forEach(function(neighborhood) {
-      // console.log(neighborhood);
-      map.data.loadGeoJson('geojson/' + neighborhood + '.geojson');
+    fileName.forEach(function(neighborhood, index) {
+      var file = 'geojson/' + neighborhood + '.geojson';
+      console.log(file);
+      // var parsedFile = $.parseJSON(file);
+
+      // console.log(parsedFile);
+      map.data.loadGeoJson(file);
+      console.log(parsedFile);
 
     });
-    // map.data.loadGeoJson('geojson/admiral.geojson');
-    // map.data.loadGeoJson('geojson/alki.geojson');
-    // map.data.loadGeoJson('geojson/ballard.geojson');
-
 
     map.data.setStyle({
       fillColor: 'purple',
       strokeWeight: 1
     });
+
+    // map.data.addListener('click', function(event) {
+    //   document.getElementById('info-box').textContent = event.feature.getProperty('letter');
+    // });
 
     // google.maps.event.addListener(map, 'click', addMarker);
   }
