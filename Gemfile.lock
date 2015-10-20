@@ -145,10 +145,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg
-<<<<<<< HEAD
-=======
   puma
->>>>>>> f682bb48971297b503e303235e7092dceb536ef3
   rails (= 4.2.4)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
