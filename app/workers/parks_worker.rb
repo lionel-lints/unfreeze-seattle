@@ -19,7 +19,7 @@
 
 #within_box(location, 47.62150693350129, -122.35756874084473, 47.590025949215594, -122.32048988342285) AND city_feature='parks'
 
-=begin
+
 
 class ParksWorker
   include Sidekiq::Worker
@@ -30,14 +30,14 @@ class ParksWorker
     parks = Parks.all
     parks.each do |park|
 
-    uri = URI.parse('http://pygments.simplabs.com/')
-    response = Net::HTTP.post_form(uri, { 'lang' => snippet.language, 'code' => snippet.plain_code })
+
+    # response = Net::HTTP.post_form(uri, { 'lang' => snippet.language, 'code' => snippet.plain_code })
     snippet.update_attribute(:highlighted_code, response.body)
   end
 
 end
 
-
+=begin
 class LinksWorker
   include Sidekiq::Worker
   # sidekiq_options queue: 'high'
@@ -53,5 +53,3 @@ class LinksWorker
   end
 end
 =end
-
-

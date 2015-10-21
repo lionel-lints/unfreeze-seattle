@@ -1,3 +1,9 @@
 class NeighborhoodsController < ApplicationController
-end
 
+  def show
+
+  end
+
+  private
+
+end
