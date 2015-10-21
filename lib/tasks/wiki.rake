@@ -4,4 +4,4 @@ desc "check wikipedia for updates to neighborhood extract"
     WikiWorker.new.perform()
     puts "done."
   end
-end
+
