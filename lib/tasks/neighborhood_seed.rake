@@ -1,3 +1,4 @@
+desc "Create neighborhoods"
 namespace :db do
   namespace :seed do
     task :neighborhoods => :environment do
