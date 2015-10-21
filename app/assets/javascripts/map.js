@@ -128,6 +128,14 @@ $(function() {
       // document.getElementById('wiki-data').textContent = event.feature.getProperty('wikiContent');
     });
 
+    map.data.addListener('mouseover', function(event) {
+      var noColor = "rgba(0, 0, 0, 0)";
+      map.data.overrideStyle(event.feature, {fillColor: noColor});
+    });
+
+    map.data.addListener('mouseout', function(event) {
+      map.data.revertStyle();
+    });
     //***********mouseout close
 
     // google.maps.event.addListener(map, 'click', addMarker);
