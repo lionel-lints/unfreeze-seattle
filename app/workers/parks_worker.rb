@@ -30,7 +30,7 @@ class ParksWorker
     parks = Parks.all
     parks.each do |park|
 
-
+    add_on = '&city_feature=Parks'
     # response = Net::HTTP.post_form(uri, { 'lang' => snippet.language, 'code' => snippet.plain_code })
     snippet.update_attribute(:highlighted_code, response.body)
   end
