@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'static_pages#index'
+  root 'neighborhoods#index'
+
+  get '/:neighborhood', to: "neighborhoods#show", as: 'neighborhood'
+
 end
+
