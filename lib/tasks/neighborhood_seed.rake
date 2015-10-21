@@ -87,19 +87,7 @@ namespace :db do
         new_hood = Neighborhood.create(name: n[0], wiki_url: n[2])
         new_hood.polygon_url = '/public/geojson/' + n[0] + '.geojson'
 
-        if n[1] == 'nw'
-          square_url = "within_box(location, 47.74448918324826, -122.43232727050781, 47.601579435823446, -122.3127007484436) "
-        elsif n[1] == 'ne'
-          square_url = "within_box(location, 47.7352538334833, -122.33345031738281, 47.6423475920095, -122.24281311035156) "
-        elsif n[1] == 'sw'
-          square_url = "within_box(location, 47.608752618414165, -122.42374420166016, 47.49521196622769, -122.32349395751953) "
-        elsif n[1] == 'se'
-          square_url = "within_box(location, 47.652524500386484, -122.33551025390625, 47.504301372234416, -122.24349975585938) "
-        elsif n[1] == 'dt'
-          square_url = "within_box(location, 47.62150693350129, -122.35756874084473, 47.590025949215594, -122.32048988342285) "
-        end
-
-        new_hood.seattle_url = 'https://data.seattle.gov/resource/82su-5fxf?$where=' + square_url
+        new_hood.seattle_url = 'https://data.seattle.gov/resource/3c4b-gdxv.json?$where=' + n[3]
 
         new_hood.save
 
