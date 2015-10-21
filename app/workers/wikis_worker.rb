@@ -1,4 +1,4 @@
-class WikiWorker
+class WikisWorker
   include Sidekiq::Worker
 
   def perform

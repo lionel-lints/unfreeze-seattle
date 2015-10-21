@@ -1,4 +1,4 @@
-class LandmarkWorker
+class LandmarksWorker
   include Sidekiq::Worker
 
   def perform

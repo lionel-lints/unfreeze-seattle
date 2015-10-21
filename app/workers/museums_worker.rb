@@ -1,4 +1,4 @@
-class MuseumWorker
+class MuseumsWorker
   include Sidekiq::Worker
 
   def perform
