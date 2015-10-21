@@ -1,10 +1,90 @@
 $(function() {
   var map;
-  var $body = $('body');
+  var infowindow;
+  // var $body = $('body');
 
   // this function shows map and adds a new place
   function initialize() {
-    var fileName = ['admiral', 'alki', 'arbor_heights', 'atlantic', 'ballard'];
+    var neighborhoods = [
+      'admiral',
+      'alki',
+      'arbor_heights',
+      'atlantic',
+      'ballard',
+      'beacon_hill',
+      'belltown',
+      'bitter_lake',
+      'blue_ridge',
+      'brighton',
+      'broadmoor',
+      'broadview',
+      'bryant',
+      'capitol_hill',
+      'cedar_park',
+      'central_district',
+      'columbia_city',
+      'crown_hill',
+      'denny',
+      'downtown',
+      'eastlake',
+      'fauntleroy',
+      'first_hill',
+      'fremont',
+      'georgetown',
+      'green_lake',
+      'greenwood',
+      'haller_lake',
+      'hawthorne_hills',
+      'high_point',
+      'highland_park',
+      'industrial_district',
+      'interbay',
+      'international_district',
+      'laurelhurst',
+      'leschi',
+      'lower_queen_anne',
+      'loyal_heights',
+      'madison_park',
+      'madison_valley',
+      'madrona',
+      'magnolia',
+      'maple_leaf',
+      'matthews_beach',
+      'meadowbrook',
+      'montlake',
+      'mount_baker',
+      'north_beach',
+      'north_college_park',
+      'north_delridge',
+      'northgate',
+      'olympic_hills',
+      'olympic_manor',
+      'phinney_ridge',
+      'pinehurst',
+      'pioneer_square',
+      'portage_bay',
+      'queen_anne',
+      'rainier_beach',
+      'ravenna',
+      'riverview',
+      'roosevelt',
+      'roxhill',
+      'sand_point',
+      'seward_park',
+      'south_delridge',
+      'south_lake_union',
+      'south_park',
+      'sunset_hill',
+      'university_district',
+      'victory_heights',
+      'view_ridge',
+      'wallingford',
+      'wedgwood',
+      'west_seattle',
+      'westlake',
+      'whittier_heights',
+      'windermere'
+      ];
     // var geojson;
     //load and center map on US
     map = new google.maps.Map(document.getElementById('map-canvas'), {
@@ -14,25 +94,41 @@ $(function() {
 
     // geojson = JSON.parse('geojson/ballard.geojson');
 
-    fileName.forEach(function(neighborhood, index) {
+    neighborhoods.forEach(function(neighborhood, index) {
       var file = 'geojson/' + neighborhood + '.geojson';
-      console.log(file);
+      // console.log(file);
       // var parsedFile = $.parseJSON(file);
-
       // console.log(parsedFile);
+
+            //get request, get data
+
       map.data.loadGeoJson(file);
-      console.log(parsedFile);
-
     });
 
-    map.data.setStyle({
-      fillColor: 'purple',
-      strokeWeight: 1
+    map.data.setStyle(function(feature) {
+      return /** @type {google.maps.Data.StyleOptions} */({
+        fillColor: feature.getProperty('color'),
+        strokeWeight: 1
+      });
     });
 
-    // map.data.addListener('click', function(event) {
-    //   document.getElementById('info-box').textContent = event.feature.getProperty('letter');
-    // });
+    map.data.addListener('click', function(event) {
+      if (infowindow) {
+        infowindow.close();
+      }
+      // console.log(event);
+      // infoWindow.close();
+      infowindow = new google.maps.InfoWindow({
+        content: event.feature.getProperty('link'),
+        position: event.latLng
+      });
+      infowindow.open(map);
+      // document.getElementById('name').textContent = event.feature.getProperty('name');
+      // document.getElementById('path').innerHTML = event.feature.getProperty('link');
+      // document.getElementById('wiki-data').textContent = event.feature.getProperty('wikiContent');
+    });
+
+    //***********mouseout close
 
     // google.maps.event.addListener(map, 'click', addMarker);
   }
