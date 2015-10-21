@@ -101,3 +101,12 @@ neighborhoods.each do |n|
   new_hood.save
 
 end
+
+
+
+
+
+get '/:neighborhood', to: 'neighborhoods#show', as
+
+
+params[:neighborhood]
