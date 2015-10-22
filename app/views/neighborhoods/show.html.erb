@@ -1,3 +1,6 @@
-<%= @neighborhood.name %>
+<%= javascript_include_tag "neighborhood_map" %>
 
+<%= @neighborhood.display_name %>
+<br>
+<div id="map"></div>
 <%= raw(@wiki) %>
