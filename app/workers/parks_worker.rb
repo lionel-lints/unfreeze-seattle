@@ -15,6 +15,7 @@ class ParksWorker
       parks_array.each do |p|
         park = Park.create(data: p)
         hood.parks << park
+        hood.save
       end
     end
   end

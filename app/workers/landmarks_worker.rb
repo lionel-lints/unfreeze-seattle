@@ -15,6 +15,7 @@ class LandmarksWorker
       landmarks_array.each do |l|
         landmark = Landmark.create(data: l)
         hood.landmarks << landmark
+        hood.save
       end
     end
   end
