@@ -3,7 +3,7 @@ class MuseumsWorker
 
   def perform(hood_id)
     hood = Neighborhood.find(hood_id)
-    add_on = '&city_feature=Museums and Galleries'
+    add_on = URI.encode('&city_feature=Museums and Galleries')
     base_uri = URI.encode(hood.seattle_url)
     response = Typhoeus::Request.get(
       base_uri + add_on,
