@@ -6,6 +6,7 @@ class CreateNeighborhood < ActiveRecord::Migration
       t.string :polygon_url
       t.string :seattle_url
       t.string :wiki_url
+      t.string :display_name
     end
   end
 end

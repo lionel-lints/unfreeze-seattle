@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20151021000029) do
     t.string   "polygon_url"
     t.string   "seattle_url"
     t.string   "wiki_url"
+    t.string   "display_name"
   end
 
   create_table "parks", force: :cascade do |t|
