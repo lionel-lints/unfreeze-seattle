@@ -6,7 +6,7 @@ class MuseumsWorker
     add_on = '&city_feature=Museums and Galleries'
     base_uri = URI.encode(hood.seattle_url)
     response = Typhoeus::Request.get(
-      url + add_on,
+      base_uri + add_on,
       headers: { 'X-App-Token' => "BaCM5K6CYxW0AGrn56SOgqmL1" }
     )
     #ENV['SOCRATA_TOKEN']

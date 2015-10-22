@@ -4,7 +4,7 @@ namespace :db do
     task :wikis => :environment do
       neighborhoods = Neighborhood.all
       neighborhoods.each do |hood|
-        WikiWorker.new.perform(hood.id)
+        WikisWorker.new.perform(hood.id)
       end
     end
   end
