@@ -104,6 +104,13 @@ end
 
 
 
+neighborhoods.each_index do |i|
+  neighborhoods[i] << fixed_wikis[i]
+end
+
+puts neighborhoods
+
+
 
 
 get '/:neighborhood', to: 'neighborhoods#show', as
