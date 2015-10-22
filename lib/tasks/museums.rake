@@ -4,7 +4,7 @@ namespace :db do
     task :museums => :environment do
       neighborhoods = Neighborhood.all
       neighborhoods.each do |hood|
-        MuseumsWorker.new.perform(hood.id)
+        MuseumsWorker.new.perform_async(hood.id)
       end
     end
   end
