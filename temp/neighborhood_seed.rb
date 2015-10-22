@@ -120,6 +120,11 @@ neighborhoods.each_index do |i|
   neighborhoods[i][2] = fixed_wikis[i]
 end
 
+neighborhoods.each_index do |i|
+  neighborhoods[i] << multipolygon_array[i]
+end
+
+
 
 
 
