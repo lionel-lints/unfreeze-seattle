@@ -1,4 +1,4 @@
-wiki = ["https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=admiral,_Seattle&format=json&exintro=1",
+wiki = ["https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=north_admiral,_Seattle&format=json&exintro=1",
 "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=alki_point,_Seattle&format=json&exintro=1",
 "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=arbor_heights,_Seattle&format=json&exintro=1",
 "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&titles=atlantic,_Seattle&format=json&exintro=1",
