@@ -16,6 +16,7 @@ class MuseumsWorker
         museum = Museum.create(data: JSON.generate(m))
         hood.museums << museum
         hood.save
+        puts "museum: #{museum.id}"
       end
     end
   end

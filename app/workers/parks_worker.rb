@@ -16,6 +16,7 @@ class ParksWorker
         park = Park.create(data: JSON.generate(p))
         hood.parks << park
         hood.save
+        puts "park: #{park.id}"
       end
     end
   end

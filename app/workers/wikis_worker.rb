@@ -6,5 +6,6 @@ class WikisWorker
       wiki = Wiki.create(data: response.body)
       hood.wikis << wiki
       hood.save
+      puts "wiki: #{wiki.id}"
     end
 end
