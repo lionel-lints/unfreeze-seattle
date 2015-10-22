@@ -13,7 +13,7 @@ class LandmarksWorker
     landmarks_array = JSON.parse(response.body)
     unless landmarks_array.size == 0
       landmarks_array.each do |l|
-        landmark = Landmark.create(data: l)
+        landmark = Landmark.create(data: JSON.generate(l))
         hood.landmarks << landmark
         hood.save
       end

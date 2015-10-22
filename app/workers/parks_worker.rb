@@ -13,7 +13,7 @@ class ParksWorker
     parks_array = JSON.parse(response.body)
     unless parks_array.size == 0
       parks_array.each do |p|
-        park = Park.create(data: p)
+        park = Park.create(data: JSON.generate(p))
         hood.parks << park
         hood.save
       end

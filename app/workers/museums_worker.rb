@@ -13,7 +13,7 @@ class MuseumsWorker
     museums_array = JSON.parse(response.body)
     unless museums_array.size == 0
       museums_array.each do |m|
-        museum = Museum.create(data: m)
+        museum = Museum.create(data: JSON.generate(m))
         hood.museums << museum
         hood.save
       end
