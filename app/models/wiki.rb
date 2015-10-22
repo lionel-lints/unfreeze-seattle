@@ -1,3 +1,3 @@
-class Wiki < Application::Base
+class Wiki < ActiveRecord::Base
   belongs_to :neighborhood
 end
