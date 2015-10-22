@@ -111,7 +111,7 @@ end
 puts neighborhoods
 
 neighborhoods.each_index do |i|
-  neighborhoods[i][2] = fixed_wikis[i]
+  neighborhoods[i][4] = fixed_seattle_links[i]
 end
 
 
