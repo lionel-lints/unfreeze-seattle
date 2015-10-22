@@ -104,6 +104,28 @@ end
 
 
 
+neighborhoods.each_index do |i|
+  neighborhoods[i] << display_names[i]
+end
+
+puts neighborhoods
+
+neighborhoods.each_index do |i|
+  neighborhoods[i][2] = fixed_wikis[i]
+end
+
+
+neighborhoods.each_index do |i|
+  neighborhoods[i] << display_names[i]
+  neighborhoods[i][2] = fixed_wikis[i]
+end
+
+neighborhoods.each_index do |i|
+  neighborhoods[i] << multipolygon_array[i]
+end
+
+
+
 
 
 get '/:neighborhood', to: 'neighborhoods#show', as
