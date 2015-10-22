@@ -7,6 +7,7 @@ class MuseumsWorker
     base_uri = URI.encode(hood.seattle_url)
     response = Typhoeus::Request.get(
       base_uri + add_on,
+      binding.pry
       headers: { 'X-App-Token' => ENV['SOCRATA_TOKEN'] }
     )
     museums_array = JSON.parse(response.body)
