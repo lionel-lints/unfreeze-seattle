@@ -2,7 +2,10 @@ desc "Get wikipedia updates"
 namespace :db do
   namespace :seed do
     task :wikis => :environment do
-      WikiWorker.new.perform()
+      neighborhoods = Neighborhood.all
+      neighborhoods.each do |hood|
+        WikiWorker.new.perform(hood.id)
+      end
     end
   end
 end
