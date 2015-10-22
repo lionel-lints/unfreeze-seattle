@@ -5,6 +5,7 @@ namespace :db do
       neighborhoods = Neighborhood.all
       neighborhoods.each do |hood|
         ParksWorker.new.perform(hood.id)
+      end
     end
   end
 end
