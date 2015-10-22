@@ -105,7 +105,7 @@ end
 
 
 neighborhoods.each_index do |i|
-  neighborhoods[i] << fixed_wikis[i]
+  neighborhoods[i][2] = fixed_wikis[i]
 end
 
 puts neighborhoods
