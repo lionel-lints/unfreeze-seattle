@@ -32,7 +32,6 @@ function initMap() {
 
   //landmarks
   landmarks.forEach(function(landmark, index) {
-
     marker = new google.maps.Marker({
       position: {lat: landmark.lat, lng: landmark.lng},
       map: map,
