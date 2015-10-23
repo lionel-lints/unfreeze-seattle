@@ -73,14 +73,11 @@ function initMap() {
  }
 
 initMap();
-
+//load the neighborhood polygons
 file = neighborhood.polygon_url
-parks = park.data
-
 map.data.loadGeoJson(file);
-map.data.loadGeoJson(parks);
 
-// Set the stroke width, and fill color for each polygon
+//orient the page to center on the selected neighborhood
 var featureStyle = map.data.setStyle(function(feature) {
      return /** @type {google.maps.Data.StyleOptions} */({
        fillColor: feature.getProperty('color'),
@@ -94,24 +91,32 @@ var featureStyle = map.data.setStyle(function(feature) {
     map.fitBounds(bounds);
   });
 
-  // zoom to the clicked feature
-  map.data.addListener('click', function (e) {
-    var bounds = new google.maps.LatLngBounds();
-    processPoints(e.feature.getGeometry(), bounds.extend, bounds);
-    map.fitBounds(bounds);
-  });
+  function processPoints(geometry, callback, thisArg) {
+    if (geometry instanceof google.maps.LatLng) {
+      callback.call(thisArg, geometry);
+    } else if (geometry instanceof google.maps.Data.Point) {
+      callback.call(thisArg, geometry.get());
+    } else {
+      geometry.getArray().forEach(function (g) {
+        processPoints(g, callback, thisArg);
+      });
+    }
 
-function processPoints(geometry, callback, thisArg) {
-  if (geometry instanceof google.maps.LatLng) {
-    callback.call(thisArg, geometry);
-  } else if (geometry instanceof google.maps.Data.Point) {
-    callback.call(thisArg, geometry.get());
-  } else {
-    geometry.getArray().forEach(function (g) {
-      processPoints(g, callback, thisArg);
+    $('input[type=checkbox]').on('click', function(e) {
+      var $evt = $(e.target);
+      var type = $evt.attr('name');
+      console.log(type);
+      if (type == "landmark") {
+
+      } else if (type == 'museum') {
+
+      } else if (type== 'park') {
+
+      } else {
+
+      }
+
     });
   }
-}
-
 
 });
