@@ -1,1 +1,1 @@
-heroku config: set PORT=80 -a unfreeze-seattle
+web: bundle exec rails s -p $PORT
