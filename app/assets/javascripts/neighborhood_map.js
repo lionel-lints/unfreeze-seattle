@@ -7,27 +7,42 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.TERRAIN
   });
 
+  var marker;
+  var infoWindow;
+
+  console.log(landmarks)
   museums.forEach(function(museum, index) {
-    var lat = museum.lat;
-    var lng = museum.lng;
-    var data = museum.name;
 
-    var infowindow = new google.maps.InfoWindow({
-      content: data
+    infowindow = new google.maps.InfoWindow({
+      content: museum.url
     });
 
-    var marker = new google.maps.Marker({
-      position: {lat: lat, lng: lng},
-      map: map
+    marker = new google.maps.Marker({
+      position: {lat: museum.lat, lng: museum.lng},
+      map: map,
+      title: museum.name
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
     });
   });
 
+  landmarks.forEach(function(landmark, index) {
 
+    infowindow = new google.maps.InfoWindow({
+      content: landmark.url
+    });
 
-  marker.addListener('click', function() {
-  //google.maps.geometry.poly.containsLocation(latLng, bermudaTriangle)
-    infowindow.open(map, marker);
-  });
+    marker = new google.maps.Marker({
+      position: {lat: landmark.lat, lng: landmark.lng},
+      map: map,
+      title: landmark.name
+    });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+  })
+  marker.setMap(map);
 }
 
 initMap();

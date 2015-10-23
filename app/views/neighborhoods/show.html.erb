@@ -12,8 +12,6 @@
   var landmarks = [];
   var museums = [];
 </script>
-<%= javascript_include_tag "neighborhood_map" %>
-
     <% @parks.each do |park| %>
       <script type="text/javascript">
         var park = {};
@@ -49,3 +47,4 @@
         museums.push(museum);
       </script>
     <% end %>
+<%= javascript_include_tag "neighborhood_map" %>
