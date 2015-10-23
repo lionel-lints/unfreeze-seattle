@@ -2,11 +2,21 @@
 <%= javascript_include_tag "map" %>
 
 <h2>Select a Seattle Neighborhood for more information:</h2>
-<div class="select-main">Click here for neighborhoods</div>
-<div class="dropdown">
-  <% @neighborhoods.each do |neighborhood|%>
-    <%= link_to neighborhood.display_name, neighborhood_path(neighborhood.name) %>
-  <% end %>
+<div class="dropdown-container">
+  <div class="select-main">
+    <p>Click here for neighborhoods</p>
+  </div>
+  <div class="dropdown">
+    <% @neighborhoods.each do |neighborhood|%>
+      <p class="nhd-link"><%= neighborhood.display_name %></p>
+    <% end %>
+  </div>
 </div>
 
 <div id="map-canvas"></div>
+
+//data
+//get data create link
+//jquery
+//button
+
