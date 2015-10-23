@@ -29,7 +29,7 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 .dropdown {
   border: 1px solid black;
   width: 300px;
-  height: 165px;
+  height: 185px;
   overflow-y: scroll;
   margin: 0;
   display: none;
