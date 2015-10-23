@@ -21,7 +21,6 @@ class NeighborhoodsController < ApplicationController
     @neighborhood.parks.each { |park| @parks << create_hash(park) }
     @neighborhood.museums.each { |museum| @museums << create_hash(museum) }
     @neighborhood.landmarks.each { |landmark| @landmarks << create_hash(landmark) }
-    binding.pry
   end
 
   private
@@ -34,7 +33,6 @@ class NeighborhoodsController < ApplicationController
     feature_hash[:website] = feature_data['website']
     feature_hash[:address] = feature_data['address']
     feature_hash
-  end
   end
 
 end
