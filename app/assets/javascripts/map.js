@@ -1,7 +1,11 @@
  $(function() {
   var map;
   var infowindow;
-  var $dropdown = $('.dropdown-container');
+  var $dropdownBox = $('.dropdown-container');
+  var $links = $('.nhd-link');
+  var $dropdown = $('.dropdown');
+  var link;
+
   // var $body = $('body');
 
   // this function shows map and adds a new place
@@ -53,14 +57,11 @@
       }
       // console.log(event);
       // infoWindow.close();
-      infowindow = new google.maps.InfoWindow({
+        infowindow = new google.maps.InfoWindow({
         content: event.feature.getProperty('infoW'),
         position: event.latLng
       });
       infowindow.open(map);
-      // document.getElementById('name').textContent = event.feature.getProperty('name');
-      // document.getElementById('path').innerHTML = event.feature.getProperty('link');
-      // document.getElementById('wiki-data').textContent = event.feature.getProperty('wikiContent');
     });
 
     map.data.addListener('mouseover', function(event) {
@@ -76,10 +77,36 @@
     // google.maps.event.addListener(map, 'click', addMarker);
   }
 
-  function dropdownHandler(evt) {
-    var $evt = $(evt.target);
+  function dropdownHandler(e) {
+    var $evt = $(e.target);
+    var $selectMain = $('.select-main p');
+    var $go = $('#go');
+    var link;
+    // var $dropdown = $('.dropdown');
 
-    console.log($evt);
+    // console.log($evt);
+
+    e.stopPropagation();
+
+    if ($evt.is($selectMain)) {
+      selectHandler();
+    } else if ($evt.is($links)) {
+      linkHandler($evt, $selectMain);
+    } else if ($evt.is($go)) {
+      goToLink($selectMain);
+    }
+
+  }
+//TOGGLE!
+  function selectHandler() {
+    $dropdown.toggle();
+  }
+
+  function linkHandler($evt, $selectMain) {
+    // console.log(link);
+    link = $evt.attr('data-link');
+    selectHandler();
+    $selectMain.html($evt.html());
   }
 
   // function loadGeoJsonString(geoString) {
@@ -88,6 +115,18 @@
   //   zoom(map);
   // }
 
+  function highlightBG(e) {
+    $evt = $(e.target);
+    $evt.toggleClass('highlight');
+  }
+
+  function goToLink($selectMain) {
+    var path = '/' + link;
+    window.location.href = path;
+  }
+
   initialize();
-  $dropdown.on('click', dropdownHandler);
+  $dropdownBox.on('click', dropdownHandler);
+  $links.on('mouseenter', highlightBG);
+  $links.on('mouseleave', highlightBG);
 });
