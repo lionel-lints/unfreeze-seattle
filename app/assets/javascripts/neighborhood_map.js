@@ -7,7 +7,9 @@ function initMap() {
     // mapTypeId: google.maps.mapTypeId.TERRAIN
   });
 }
-console.log("***************************************")
+
+  map.data.loadGeoJson(neighborhood);
+
 initMap();
 
 });
