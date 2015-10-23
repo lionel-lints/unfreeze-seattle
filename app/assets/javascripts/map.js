@@ -124,8 +124,10 @@
   }
 
   function goToLink($selectMain) {
-    var path = '/' + link;
-    window.location.href = path;
+    if (link) {
+      var path = '/' + link;
+      window.location.href = path;
+    }
   }
 
   initialize();
