@@ -6,9 +6,8 @@ class NeighborhoodsController < ApplicationController
 
   def show
     n = Neighborhood.find_by(name: params[:neighborhood])
-    hood = {name: n.name, display_name: n.display_name, seattle_url: n.seattle_url,
+    @neighborhood = {name: n.name, display_name: n.display_name, seattle_url: n.seattle_url,
                    polygon_url: n.polygon_url, wiki_url: n.wiki_url}
-    @neighborhood = hood.to_json
 
    data = n.wikis[0].data
     if data != ""
