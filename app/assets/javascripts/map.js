@@ -53,7 +53,7 @@
       }
       // console.log(event);
       // infoWindow.close();
-      infowindow = new google.maps.InfoWindow({
+        infowindow = new google.maps.InfoWindow({
         content: event.feature.getProperty('infoW'),
         position: event.latLng
       });
