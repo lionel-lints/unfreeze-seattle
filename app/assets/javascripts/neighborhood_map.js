@@ -9,7 +9,6 @@ function initMap() {
 
   var marker;
   var infoWindow;
-  console.log(museums)
   museums.forEach(function(museum, index) {
     marker = new google.maps.Marker({
       position: {lat: museum.latlng.lat, lng: museum.latlng.lng},
@@ -17,7 +16,7 @@ function initMap() {
       title: museum.name
     });
     marker.addListener('click', function(event) {
-    museum_content = '<a href=' + '"' + museum.url + '"' + 'target="_blank">' + museum.name + '</a> <br>' + museum.address;
+    museum_content = '<h3>MUSEUM</h3><a href=' + '"' + museum.url + '"' + 'target="_blank">' + museum.name + '</a> <br>' + museum.address;
       if (infoWindow) {
         infoWindow.close();
       }
@@ -30,7 +29,6 @@ function initMap() {
     marker.setMap(map);
   });
 
-  console.log(landmarks)
   //landmarks
   landmarks.forEach(function(landmark, index) {
     marker = new google.maps.Marker({
@@ -39,7 +37,7 @@ function initMap() {
       title:landmark.name
     });
     marker.addListener('click', function(event) {
-    landmark_content = '<a href=' + '"' + landmark.url + '"' + 'target="_blank">' + landmark.name + '</a> <br>' + landmark.address;
+    landmark_content = '<h3>LANDMARK</h3><a href=' + '"' + landmark.url + '"' + 'target="_blank">' + landmark.name + '</a> <br>' + landmark.address;
       if (infoWindow) {
         infoWindow.close();
       }
@@ -52,14 +50,35 @@ function initMap() {
     marker.setMap(map);
   });
   // parks
+  parks.forEach(function(park, index) {
+    marker = new google.maps.Marker({
+      position: {lat: park.latlng.lat, lng: park.latlng.lng},
+      map: map,
+      title:park.name
+    });
+    marker.addListener('click', function(event) {
+    park_content = '<h3>PARK</h3><a href=' + '"' + park.url + '"' + 'target="_blank">' + park.name + '</a> <br>' + park.address;
+      if (infoWindow) {
+        infoWindow.close();
+      }
+      infoWindow = new google.maps.InfoWindow({
+        content: park_content,
+        position: event.latLng
+      });
+      infoWindow.open(map);
+    });
+    marker.setMap(map);
+  });
 
  }
 
 initMap();
 
 file = neighborhood.polygon_url
+parks = park.data
 
 map.data.loadGeoJson(file);
+map.data.loadGeoJson(parks);
 
 // Set the stroke width, and fill color for each polygon
 var featureStyle = map.data.setStyle(function(feature) {
