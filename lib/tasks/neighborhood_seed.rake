@@ -86,7 +86,7 @@ namespace :db do
 
       neighborhoods.each do |n|
         new_hood = Neighborhood.create(name: n[0], wiki_url: n[2], display_name: n[3])
-        new_hood.polygon_url = '/public/geojson/' + n[0] + '.geojson'
+        new_hood.polygon_url = '/geojson/' + n[0] + '.geojson'
 
         new_hood.seattle_url = 'https://data.seattle.gov/resource/3c4b-gdxv.json?$where=' + n[4]
 
