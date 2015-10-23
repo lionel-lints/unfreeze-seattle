@@ -3,6 +3,7 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 #map-canvas {
   width: 700px;
   height: 700px;
+  z-index: 1;
 }
 
 #map {
@@ -17,31 +18,39 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 
 .select-main {
   border: 1px solid black;
-  width: 305px;
+  width: 300px;
   display: inline-block;
 }
 
 .select-main p {
-  padding: 6px;
-  margin: 0;
+  margin: 6px;
 }
 
 .dropdown {
   border: 1px solid black;
   width: 300px;
-  height: 100px;
-  overflow: scroll;
-  padding-left: 5px;
-
+  height: 150px;
+  overflow-y: scroll;
+  margin: 0;
+  display: none;
+  z-index: 10;
+  position: absolute;
+  background-color: RGBA(255, 255, 255, 1);
 }
 
 .nhd-link {
-  margin: 5px;
+  margin: 0;
+  padding: 5px;
 
 }
 
 #go {
   display: inline-block;
+}
+
+.highlight {
+  background-color: RGBA(228, 228, 228, 1);
+
 }
 
 /*::-webkit-scrollbar {
