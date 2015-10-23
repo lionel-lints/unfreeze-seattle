@@ -1,66 +1,51 @@
-
-<% data = JSON.parse(@neighborhood)%>
-<%= data['display_name'] %>
+<h1><%= @neighborhood[:display_name] %></h1>
 <br>
 <div id="map"></div>
 <%= raw(@wiki) %>
 
 <script type="text/javascript">
-  var neighborhood = {}
-  neighborhood.polygon_url = '<%= data['polygon_url'] %>'
-  neighborhood.display_name = '<%= data['display_name'] %>'
-  neighborhood.name = '<%= data['name'] %>'
+  var neighborhood = {};
+  neighborhood.polygon_url = "<%= @neighborhood[:polygon_url] %>";
+  neighborhood.display_name = "<%= @neighborhood[:display_name] %>";
+  neighborhood.name = "<%= @neighborhood[:name] %>";
+  var parks = [];
+  var landmarks = [];
+  var museums = [];
 </script>
 <%= javascript_include_tag "neighborhood_map" %>
 
-
-<h2>Parks</h2>
-  <ul>
     <% @parks.each do |park| %>
-
-      <li>
-      <%= content_tag :h4, park[:name] %>
-      <%= content_tag :p, park[:address] %>
-      <%= content_tag :p, "Lat: #{park[:lat]} Long: #{park[:long]}" %>
-      <%= link_to "Website", park[:website] %>
-      </li>
-
+      <script type="text/javascript">
+        var park = {};
+        park.lat = Number('<%= park[:lat] %>');
+        park.lng = Number('<%= park[:long] %>');
+        park.name = '<%= park[:name] %>';
+        park.address = '<%= park[:address] %>';
+        park.url = '<%= park[:website] %>';
+        parks.push(park);
+      </script>
     <% end %>
-    <% if @parks.size == 0 %>
-      <%= content_tag :p, "None found in this neighborhood" %>
-    <% end %>
-  </ul>
 
-  <h2>Landmarks</h2>
-  <ul>
     <% @landmarks.each do |lm| %>
-
-      <li>
-      <%= content_tag :h4, lm[:name] %>
-      <%= content_tag :p, lm[:address] %>
-      <%= content_tag :p, "Lat: #{lm[:lat]} Long: #{lm[:long]}" %>
-      <%= link_to "Website", lm[:website] %>
-      </li>
-
+      <script type="text/javascript">
+        var landmark = {};
+        landmark.lat = Number('<%= lm[:lat] %>');
+        landmark.lng = Number('<%= lm[:long] %>');
+        landmark.name = '<%= lm[:name] %>';
+        landmark.address = '<%= lm[:address] %>';
+        landmark.url = '<%= lm[:website] %>';
+        landmarks.push(landmark);
+      </script>
     <% end %>
-    <% if @landmarks.size == 0 %>
-      <%= content_tag :p, "None found in this neighborhood" %>
-    <% end %>
-  </ul>
 
-  <h2>Museums</h2>
-  <ul>
     <% @museums.each do |museum| %>
-
-      <li>
-      <%= content_tag :h4, museum[:name] %>
-      <%= content_tag :p, museum[:address] %>
-      <%= content_tag :p, "Lat: #{museum[:lat]} Long: #{museum[:long]}" %>
-      <%= link_to "Website", museum[:website] %>
-      </li>
-
+      <script type="text/javascript">
+        var museum = {};
+        museum.lat = Number('<%= museum[:lat] %>');
+        museum.lng = Number('<%= museum[:long] %>');
+        museum.name = '<%= museum[:name] %>';
+        museum.address = '<%= museum[:address] %>';
+        museum.url = '<%= museum[:website] %>';
+        museums.push(museum);
+      </script>
     <% end %>
-    <% if @museums.size == 0 %>
-      <%= content_tag :p, "None found in this neighborhood" %>
-    <% end %>
-  </ul>
