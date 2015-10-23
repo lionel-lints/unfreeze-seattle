@@ -9,10 +9,10 @@ function initMap() {
 
   var marker;
   var infoWindow;
-
+  console.log(museums)
   museums.forEach(function(museum, index) {
     marker = new google.maps.Marker({
-      position: {lat: museum.lat, lng: museum.lng},
+      position: {lat: museum.latlng.lat, lng: museum.latlng.lng},
       map: map,
       title: museum.name
     });
@@ -30,10 +30,11 @@ function initMap() {
     marker.setMap(map);
   });
 
+  console.log(landmarks)
   //landmarks
   landmarks.forEach(function(landmark, index) {
     marker = new google.maps.Marker({
-      position: {lat: landmark.lat, lng: landmark.lng},
+      position: {lat: landmark.latlng.lat, lng: landmark.latlng.lng},
       map: map,
       title:landmark.name
     });
