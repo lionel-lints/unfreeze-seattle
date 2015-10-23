@@ -17,8 +17,7 @@
     <% @parks.each do |park| %>
       <script type="text/javascript">
         var park = {};
-        park.lat = Number('<%= park[:lat] %>');
-        park.lng = Number('<%= park[:long] %>');
+        park.latlng = {lat: Number('<%= park[:lat] %>'), lng: Number('<%= park[:long] %>')};
         park.name = '<%= park[:name] %>';
         park.address = '<%= park[:address] %>';
         park.url = '<%= park[:website] %>';
@@ -29,8 +28,7 @@
     <% @landmarks.each do |lm| %>
       <script type="text/javascript">
         var landmark = {};
-        landmark.lat = Number('<%= lm[:lat] %>');
-        landmark.lng = Number('<%= lm[:long] %>');
+        landmark.latlng = {lat: Number('<%= lm[:lat] %>'), lng: Number('<%= lm[:long] %>')};
         landmark.name = '<%= lm[:name] %>';
         landmark.address = '<%= lm[:address] %>';
         landmark.url = '<%= lm[:website] %>';
@@ -38,14 +36,13 @@
       </script>
     <% end %>
 
-    <% @museums.each do |museum| %>
+    <% @museums.each do |msm| %>
       <script type="text/javascript">
         var museum = {};
-        museum.lat = Number('<%= museum[:lat] %>');
-        museum.lng = Number('<%= museum[:long] %>');
-        museum.name = '<%= museum[:name] %>';
-        museum.address = '<%= museum[:address] %>';
-        museum.url = '<%= museum[:website] %>';
+        museum.latlng = {lat: Number('<%= msm[:lat] %>'), lng: Number('<%= msm[:long] %>')};
+        museum.name = '<%= msm[:name] %>';
+        museum.address = '<%= msm[:address] %>';
+        museum.url = '<%= msm[:website] %>';
         museums.push(museum);
       </script>
     <% end %>
