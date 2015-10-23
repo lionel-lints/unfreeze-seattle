@@ -10,40 +10,50 @@ function initMap() {
   var marker;
   var infoWindow;
 
-  console.log(landmarks)
   museums.forEach(function(museum, index) {
-
-    infowindow = new google.maps.InfoWindow({
-      content: museum.url
-    });
-
     marker = new google.maps.Marker({
       position: {lat: museum.lat, lng: museum.lng},
       map: map,
       title: museum.name
     });
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
+    marker.addListener('click', function(event) {
+    museum_content = '<a href=' + '"' + museum.url + '"' + 'target="_blank">' + museum.name + '</a> <br>' + museum.address;
+      if (infoWindow) {
+        infoWindow.close();
+      }
+      infoWindow = new google.maps.InfoWindow({
+        content: museum_content,
+        position: event.latLng
+      });
+      infoWindow.open(map);
     });
+    marker.setMap(map);
   });
 
+  //landmarks
   landmarks.forEach(function(landmark, index) {
-
-    infowindow = new google.maps.InfoWindow({
-      content: landmark.url
-    });
 
     marker = new google.maps.Marker({
       position: {lat: landmark.lat, lng: landmark.lng},
       map: map,
-      title: landmark.name
+      title:landmark.name
     });
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
+    marker.addListener('click', function(event) {
+    landmark_content = '<a href=' + '"' + landmark.url + '"' + 'target="_blank">' + landmark.name + '</a> <br>' + landmark.address;
+      if (infoWindow) {
+        infoWindow.close();
+      }
+      infoWindow = new google.maps.InfoWindow({
+        content: landmark_content,
+        position: event.latLng
+      });
+      infoWindow.open(map);
     });
-  })
-  marker.setMap(map);
-}
+    marker.setMap(map);
+  });
+  // parks
+
+ }
 
 initMap();
 
