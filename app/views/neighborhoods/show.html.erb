@@ -1,9 +1,17 @@
-<%= javascript_include_tag "neighborhood_map" %>
 
 <%= @neighborhood.display_name %>
 <br>
 <div id="map"></div>
 <%= raw(@wiki) %>
+
+<script type="text/javascript">
+  var neighborhood = <%= @neighborhood %>
+  var parks = <%= @parks %>
+  var museums = <%= @museums %>
+  var landmarks = <%= @landmarks %>
+</script>
+<%= javascript_include_tag "neighborhood_map" %>
+
 
 <h2>Parks</h2>
   <ul>
