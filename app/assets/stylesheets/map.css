@@ -6,8 +6,8 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 }
 
 #map {
-  width: 700px;
-  height: 700px;
+  width: 400px;
+  height: 400px;
 }
 
 .dropdown-container {
