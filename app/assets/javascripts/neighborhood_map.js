@@ -14,13 +14,12 @@ initMap();
 map.data.loadGeoJson(file);
 
 // Set the stroke width, and fill color for each polygon
-var featureStyle = {
-  fillColor: '#ADFF2F',
-  fillOpacity: 0.1,
-  strokeColor: '#ADFF2F',
-  strokeWeight: 1
-};
-
+var featureStyle = map.data.setStyle(function(feature) {
+     return /** @type {google.maps.Data.StyleOptions} */({
+       fillColor: feature.getProperty('color'),
+       strokeWeight: 1
+     });
+   });
   // zoom to show all the features
   var bounds = new google.maps.LatLngBounds();
   map.data.addListener('addfeature', function (e) {
