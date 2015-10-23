@@ -6,9 +6,10 @@
   <div class="select-main">
     <p>Click here for neighborhoods</p>
   </div>
+  <button id="go">Go</button>
   <div class="dropdown">
     <% @neighborhoods.each do |neighborhood|%>
-      <p class="nhd-link"><%= neighborhood.display_name %></p>
+      <p class="nhd-link" data-link="<%= neighborhood.name %>"><%= neighborhood.display_name %></p>
     <% end %>
   </div>
 </div>

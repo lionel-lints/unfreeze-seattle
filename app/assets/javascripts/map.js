@@ -1,6 +1,7 @@
 $(function() {
   var map;
   var infowindow;
+  var $dropdown = $('.dropdown-container');
   // var $body = $('body');
 
   // this function shows map and adds a new place
@@ -75,6 +76,11 @@ $(function() {
     // google.maps.event.addListener(map, 'click', addMarker);
   }
 
+  function dropdownHandler(evt) {
+    var $evt = $(evt.target);
+
+    console.log($evt);
+  }
 
   // function loadGeoJsonString(geoString) {
   //   var geojson = JSON.parse(geoString);
@@ -83,5 +89,5 @@ $(function() {
   // }
 
   initialize();
-
+  $dropdown.on('click', dropdownHandler);
 });
