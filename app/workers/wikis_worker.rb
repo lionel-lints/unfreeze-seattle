@@ -1,5 +1,7 @@
 class WikisWorker
   include Sidekiq::Worker
+  sidekiq_options retry: false
+
     def perform(hood_id)
       hood = Neighborhood.find(hood_id)
       response = Typhoeus.get(hood.wiki_url)
