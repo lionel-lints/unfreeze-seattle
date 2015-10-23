@@ -5,8 +5,12 @@ class NeighborhoodsController < ApplicationController
   end
 
   def show
-   @neighborhood = Neighborhood.find_by(name: params[:neighborhood])
-   data = @neighborhood.wikis[0].data
+    n = Neighborhood.find_by(name: params[:neighborhood])
+    hood = {name: n.name, display_name: n.display_name, seattle_url: n.seattle_url,
+                   polygon_url: n.polygon_url, wiki_url: n.wiki_url}
+    @neighborhood = hood.to_json
+
+   data = n.wikis[0].data
     if data != ""
       data = JSON.parse(data)
       data['query']['pages'].each do|key, value|
@@ -18,9 +22,9 @@ class NeighborhoodsController < ApplicationController
     @parks = []
     @museums = []
     @landmarks = []
-    @neighborhood.parks.each { |park| @parks << create_hash(park) }
-    @neighborhood.museums.each { |museum| @museums << create_hash(museum) }
-    @neighborhood.landmarks.each { |landmark| @landmarks << create_hash(landmark) }
+    n.parks.each { |park| @parks << create_hash(park) }
+    n.museums.each { |museum| @museums << create_hash(museum) }
+    n.landmarks.each { |landmark| @landmarks << create_hash(landmark) }
   end
 
   private

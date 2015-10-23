@@ -1,4 +1,4 @@
-$(function() {
+ $(function() {
   var map;
   var infowindow;
   // var $body = $('body');
