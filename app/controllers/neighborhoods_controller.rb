@@ -9,7 +9,7 @@ class NeighborhoodsController < ApplicationController
     @neighborhood = {name: n.name, display_name: n.display_name, seattle_url: n.seattle_url,
                    polygon_url: n.polygon_url, wiki_url: n.wiki_url}
 
-   data = n.wikis[0].data
+    data = n.wiki.data
     if data != ""
       data = JSON.parse(data)
       data['query']['pages'].each do|key, value|
