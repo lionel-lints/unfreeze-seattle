@@ -74,7 +74,7 @@ function initMap() {
         map: map,
         title:park.name
       });
-      if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
+      if (google.maps.geometry.poly.containsLocation(marker.position, polygon) || parkExceptions(park.latlng)) {
         marker.addListener('click', function(event) {
         park_content = '<h3>PARK</h3><a href=' + '"' + park.url + '"' + 'target="_blank">' + park.name + '</a> <br>' + park.address;
           if (infoWindow) {
@@ -158,6 +158,18 @@ var featureStyle = map.data.setStyle(function(feature) {
       }
 
     });
+  }
+
+  function parkExceptions(latlng) {
+    if (latlng.lat == 47.588951 && latlng.lng == -122.378676) {
+      return true;
+    }
+    else if (latlng.lat == 47.58671 && latlng.lng == -122.400127) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
 });
