@@ -2,6 +2,7 @@ $(function() {
   var map;
   var marker;
   var infoWindow;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 11,
@@ -17,18 +18,23 @@ function initMap() {
         map: map,
         title: museum.name
       });
-      marker.addListener('click', function(event) {
-      museum_content = '<h3>MUSEUM</h3><a href=' + '"' + museum.url + '"' + 'target="_blank">' + museum.name + '</a> <br>' + museum.address;
-        if (infoWindow) {
-          infoWindow.close();
-        }
-        infoWindow = new google.maps.InfoWindow({
-          content: museum_content,
-          position: event.latLng
+      if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
+        marker.addListener('click', function(event) {
+        museum_content = '<h3>MUSEUM</h3><a href=' + '"' + museum.url + '"' + 'target="_blank">' + museum.name + '</a> <br>' + museum.address;
+          if (infoWindow) {
+            infoWindow.close();
+          }
+          infoWindow = new google.maps.InfoWindow({
+            content: museum_content,
+            position: event.latLng
+          });
+          infoWindow.open(map);
         });
-        infoWindow.open(map);
-      });
-      marker.setMap(map);
+        marker.setMap(map);
+      }
+      else {
+        marker.setVisible(false);
+      }
     });
   }
 
@@ -40,18 +46,23 @@ function initMap() {
         map: map,
         title:landmark.name
       });
-      marker.addListener('click', function(event) {
-      landmark_content = '<h3>LANDMARK</h3><a href=' + '"' + landmark.url + '"' + 'target="_blank">' + landmark.name + '</a> <br>' + landmark.address;
-        if (infoWindow) {
-          infoWindow.close();
-        }
-        infoWindow = new google.maps.InfoWindow({
-          content: landmark_content,
-          position: event.latLng
+      if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
+        marker.addListener('click', function(event) {
+        landmark_content = '<h3>LANDMARK</h3><a href=' + '"' + landmark.url + '"' + 'target="_blank">' + landmark.name + '</a> <br>' + landmark.address;
+          if (infoWindow) {
+            infoWindow.close();
+          }
+          infoWindow = new google.maps.InfoWindow({
+            content: landmark_content,
+            position: event.latLng
+          });
+          infoWindow.open(map);
         });
-        infoWindow.open(map);
-      });
-      marker.setMap(map);
+        marker.setMap(map);
+      }
+      else {
+        marker.setVisible(false);
+      }
     });
   }
   // parks
@@ -62,29 +73,39 @@ function initMap() {
         map: map,
         title:park.name
       });
-      marker.addListener('click', function(event) {
-      park_content = '<h3>PARK</h3><a href=' + '"' + park.url + '"' + 'target="_blank">' + park.name + '</a> <br>' + park.address;
-        if (infoWindow) {
-          infoWindow.close();
-        }
-        infoWindow = new google.maps.InfoWindow({
-          content: park_content,
-          position: event.latLng
+      console.log(map.data.loadGeoJson(file));
+      console.log(google.maps.geometry.poly.containsLocation(marker.position, polygon));
+      // if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
+        marker.addListener('click', function(event) {
+        park_content = '<h3>PARK</h3><a href=' + '"' + park.url + '"' + 'target="_blank">' + park.name + '</a> <br>' + park.address;
+          if (infoWindow) {
+            infoWindow.close();
+          }
+          infoWindow = new google.maps.InfoWindow({
+            content: park_content,
+            position: event.latLng
+          });
+          infoWindow.open(map);
         });
-        infoWindow.open(map);
-      });
-      marker.setMap(map);
+        marker.setMap(map);
+      // }
+      // else {
+      //   marker.setVisible(false);
+      // }
     });
   }
 
 initMap();
+
+//load the neighborhood polygons
+var file = neighborhood.polygon_url;
+var polygon = new google.maps.Polygon(map.data.loadGeoJson(file));
+
 museumMarkers();
 parkMarkers();
 landmarkMarkers();
 
-//load the neighborhood polygons
-file = neighborhood.polygon_url
-map.data.loadGeoJson(file);
+
 
 //orient the page to center on the selected neighborhood
 var featureStyle = map.data.setStyle(function(feature) {
