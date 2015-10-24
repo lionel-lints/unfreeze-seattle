@@ -1,6 +1,7 @@
  $(function() {
   var map;
   var infowindow;
+  var $body = $('body');
   var $dropdownBox = $('.dropdown-container');
   var $links = $('.nhd-link');
   var $dropdown = $('.dropdown');
@@ -89,23 +90,25 @@
     e.stopPropagation();
 
     if ($evt.is($selectMain)) {
-      selectHandler();
+      toggleDropdown();
     } else if ($evt.is($links)) {
       linkHandler($evt, $selectMain);
     } else if ($evt.is($go)) {
       goToLink($selectMain);
+    } else {
+      $dropdown.hide();
     }
 
   }
 //TOGGLE!
-  function selectHandler() {
+  function toggleDropdown() {
     $dropdown.toggle();
   }
 
   function linkHandler($evt, $selectMain) {
     // console.log(link);
     link = $evt.attr('data-link');
-    selectHandler();
+    toggleDropdown();
     $selectMain.html($evt.html());
   }
 
@@ -121,12 +124,18 @@
   }
 
   function goToLink($selectMain) {
-    var path = '/' + link;
-    window.location.href = path;
+    if (link) {
+      var path = '/' + link;
+      window.location.href = path;
+    }
   }
 
   initialize();
-  $dropdownBox.on('click', dropdownHandler);
+  //$dropdownBox;
+  $body.on('click', dropdownHandler);
   $links.on('mouseenter', highlightBG);
   $links.on('mouseleave', highlightBG);
+  // $dropdown.on('mouseleave', function() {
+  //   $dropdown.hide();
+  // });
 });

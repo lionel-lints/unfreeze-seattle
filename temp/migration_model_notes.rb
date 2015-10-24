@@ -54,3 +54,12 @@ Landmarks
 2. point — lat/long object?
 3. link
 4. name
+
+#Lionel's extra code for the neighborhood_map.js file
+
+  # // // zoom to the clicked feature
+  # // map.data.addListener('click', function (e) {
+  # //   var bounds = new google.maps.LatLngBounds();
+  # //   processPoints(e.feature.getGeometry(), bounds.extend, bounds);
+  # //   map.fitBounds(bounds);
+  # // });

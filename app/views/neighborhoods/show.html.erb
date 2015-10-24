@@ -1,6 +1,13 @@
 <h1><%= @neighborhood[:display_name] %></h1>
 <br>
 <div id="map"></div>
+  <div>
+    <label>Landmarks<input type="checkbox" name="landmark" value="datalayer"></label>
+    <label>Museums<input type="checkbox" name="museum" value="museum"></label>
+    <label>Parks<input type="checkbox"name="park"value="park"></label>
+    <button type=reset id="button" value="reset">Reset Map</button><br><br>
+  </div>
+
 <%= raw(@wiki) %>
 
 <script type="text/javascript">
@@ -45,5 +52,7 @@
       </script>
     <% end %>
 
+
 <%= javascript_include_tag "neighborhood_map" %>
+
 
