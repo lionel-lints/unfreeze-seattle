@@ -42,7 +42,11 @@ class NeighborhoodsController < ApplicationController
     else
       data = JSON.parse(data)
       data['query']['pages'].each do|key, value|
-        @wiki = value['extract']
+        if (hood[:name] == 'georgetown')
+          @wiki = drop_redirect("#{value['extract']}")
+        else
+          @wiki = value['extract']
+        end
       end
     end
   end
@@ -56,4 +60,10 @@ class NeighborhoodsController < ApplicationController
     Create a page for it!</a></p>"
   end
 
+  def drop_redirect(data)
+    split = data.split("<p>")
+    split.shift
+    joined = split.join("<p>")
+    return "<p>" + joined
+  end
 end
