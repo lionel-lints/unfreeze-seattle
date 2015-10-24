@@ -29,7 +29,9 @@
     //load and center map on US
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       zoom: 11,
-      center: {lat: 47.6062095, lng: -122.3320708}  //center it on united states
+      center: {lat: 47.6062095, lng: -122.3320708}, //center it on united states
+      mapTypeId: google.maps.MapTypeId.HYBRID
+
     });
 
     // geojson = JSON.parse('geojson/ballard.geojson');
