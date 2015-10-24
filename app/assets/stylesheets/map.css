@@ -27,7 +27,7 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 }
 
 .dropdown {
-  border: 1px solid black;
+  border: 2px solid black;
   width: 300px;
   height: 185px;
   overflow-y: scroll;
@@ -51,6 +51,8 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
   background-color: RGBA(228, 228, 228, 1);
 
 }
+
+
 
 /*::-webkit-scrollbar {
     -webkit-appearance: none;

@@ -1,17 +1,27 @@
 <!-- neighborhood text selections/links -->
 <%= javascript_include_tag "map" %>
 
-<h2>Select a Seattle Neighborhood for more information:</h2>
-<div class="dropdown-container">
-  <div class="select-main">
-    <p>Choose a neighborhood...</p>
-  </div>
-  <button id="go">Go</button>
-  <div class="dropdown">
-    <% @neighborhoods.each do |neighborhood|%>
-      <p class="nhd-link" data-link="<%= neighborhood.name %>"><%= neighborhood.display_name %></p>
-    <% end %>
+<div class="container-fluid text-left" id="dropdown">
+  <div class="col-s-12">
+    <h1>Select a Seattle Neighborhood for more information:</h1>
+      <div class="dropdown-container">
+        <div class="select-main">
+          <p>Choose a neighborhood...</p>
+        </div>
+        <button class="btn btn-default">Go</button>
+        <div class="dropdown">
+          <% @neighborhoods.each do |neighborhood|%>
+            <p class="nhd-link" data-link="<%= neighborhood.name %>"><%= neighborhood.display_name %></p>
+          <% end %>
+        </div>
+      </div>
   </div>
 </div>
 
-<div id="map-canvas"></div>
+
+<div class='container text-center'>
+  <div class="col-lg-7 col-lg-offset-5">
+    <div id="map-canvas"></div>
+  </div>
+</div>
+
