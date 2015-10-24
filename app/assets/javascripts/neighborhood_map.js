@@ -69,6 +69,7 @@ function initMap() {
   // parks
   function parkMarkers() {
     parks.forEach(function(park, index) {
+      handleParkExceptions(park);
       marker = new google.maps.Marker({
         position: {lat: park.latlng.lat, lng: park.latlng.lng},
         map: map,
@@ -158,6 +159,15 @@ var featureStyle = map.data.setStyle(function(feature) {
       }
 
     });
+  }
+
+  function handleParkExceptions(park) {
+    if (park.latlng.lat == 47.588951 && park.latlng.lng == -122.378676) {
+      park.latlng = {lat: 47.589440, lng: -122.380639};
+    }
+    else if (park.latlng.lat == 47.58671 && park.latlng.lng == -122.400127) {
+      park.latlng = {lat: 47.58671, lng: -122.397799};
+    }
   }
 
 });

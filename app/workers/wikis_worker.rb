@@ -6,7 +6,7 @@ class WikisWorker
       hood = Neighborhood.find(hood_id)
       response = Typhoeus.get(hood.wiki_url)
       wiki = Wiki.create(data: response.body)
-      hood.wikis << wiki
+      hood.wiki = wiki
       hood.save
       puts "wiki: #{wiki.id}"
     end
