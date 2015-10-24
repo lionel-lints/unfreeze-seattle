@@ -38,4 +38,7 @@ class NeighborhoodsController < ApplicationController
     feature_hash
   end
 
+  def handle_wiki_exceptions(hood)
+  end
+
 end
