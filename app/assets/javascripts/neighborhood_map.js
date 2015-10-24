@@ -2,7 +2,6 @@ $(function() {
   var map;
   var marker;
   var infoWindow;
-  var polygonCoords = [];
   var polygon;
 
 function initMap() {
@@ -105,6 +104,7 @@ map.data.loadGeoJson(file);
 $.get(file, function(data) {
   geoJSON = JSON.parse(data);
   coordsArray = geoJSON.features[0].geometry.coordinates[0];
+  var polygonCoords = [];
   coordsArray.forEach(function(singleCoordArray) {
     coords = {};
     coords.lat = singleCoordArray[1];
@@ -117,9 +117,6 @@ $.get(file, function(data) {
   parkMarkers();
   landmarkMarkers();
 });
-
-
-
 
 //orient the page to center on the selected neighborhood
 var featureStyle = map.data.setStyle(function(feature) {
