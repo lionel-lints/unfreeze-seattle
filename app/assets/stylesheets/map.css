@@ -78,7 +78,12 @@ p {
   font-family:'Arimo', sans-serif;
 }
 
-
+.about-us {
+  width: 30%;
+  height:40%;
+  font-family:'Arimo', sans-serif;
+  font-size: 20px;
+}
 /*::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
