@@ -37,6 +37,8 @@ class NeighborhoodsController < ApplicationController
       @wiki = wiki_maker(hood, "Blue Ridge", "Blue_Ridge,_Seattle")
     elsif (hood[:name] == 'whittier_heights' || hood[:name] == 'loyal_heights')
       @wiki = wiki_maker(hood, 'Ballard', 'Ballard,_Seattle')
+    elsif (['north_delridge', 'high_point', 'riverview', 'roxhill', 'south_delridge', 'highland_park'].include? hood[:name])
+      @wiki = wiki_maker(hood, 'Delridge', 'Delridge,_Seattle')
     else
       data = JSON.parse(data)
       data['query']['pages'].each do|key, value|
