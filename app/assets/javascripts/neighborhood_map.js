@@ -69,12 +69,13 @@ function initMap() {
   // parks
   function parkMarkers() {
     parks.forEach(function(park, index) {
+      handleParkExceptions(park);
       marker = new google.maps.Marker({
         position: {lat: park.latlng.lat, lng: park.latlng.lng},
         map: map,
         title:park.name
       });
-      if (google.maps.geometry.poly.containsLocation(marker.position, polygon) || parkExceptions(park.latlng)) {
+      if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
         marker.addListener('click', function(event) {
         park_content = '<h3>PARK</h3><a href=' + '"' + park.url + '"' + 'target="_blank">' + park.name + '</a> <br>' + park.address;
           if (infoWindow) {
@@ -160,15 +161,12 @@ var featureStyle = map.data.setStyle(function(feature) {
     });
   }
 
-  function parkExceptions(latlng) {
-    if (latlng.lat == 47.588951 && latlng.lng == -122.378676) {
-      return true;
+  function handleParkExceptions(park) {
+    if (park.latlng.lat == 47.588951 && park.latlng.lng == -122.378676) {
+      park.latlng = {lat: 47.589440, lng: -122.380639};
     }
-    else if (latlng.lat == 47.58671 && latlng.lng == -122.400127) {
-      return true;
-    }
-    else {
-      return false;
+    else if (park.latlng.lat == 47.58671 && park.latlng.lng == -122.400127) {
+      park.latlng = {lat: 47.58671, lng: -122.397799};
     }
   }
 
