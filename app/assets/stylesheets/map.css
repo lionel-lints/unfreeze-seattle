@@ -17,8 +17,6 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 
 .dropdown-container {
   width: 450px;
-
-  /*height: 138px;*/
 }
 
 .select-main {
@@ -58,11 +56,12 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 
 }
 
-h2 {
+.title {
   font-size: 30px;
   font-family:'Arimo', sans-serif;
   padding: 10px;
   margin-left:20px;
+  float: left;
 }
 
 p {
