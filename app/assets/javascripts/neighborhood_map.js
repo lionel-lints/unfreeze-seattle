@@ -71,7 +71,12 @@ $(function() {
           });
           infoWindow.open(map);
         });
-]          marker.setMap(map);
+        // if (markersSet.landmarks) {
+          marker.setMap(map);
+        // } else {
+        //   marker.setMap(null);
+        // }
+        // marker.setMap(map);
       }
       else {
         marker.setVisible(false);
