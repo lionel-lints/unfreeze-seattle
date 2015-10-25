@@ -91,6 +91,15 @@ p {
   font-family:'Arimo', sans-serif;
   font-size: 20px;
 }
+
+/*#welcome {
+  background-image: url(https://en.wikipedia.org/wiki/Seattle#/media/File:Space_Needle002.jpg);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-attachment: fixed;
+  background-size: cover;
+  margin:0;
+}*/
 /*::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
