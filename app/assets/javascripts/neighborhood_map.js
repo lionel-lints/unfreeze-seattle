@@ -71,12 +71,7 @@ $(function() {
           });
           infoWindow.open(map);
         });
-        // if (markersSet.landmarks) {
-          marker.setMap(map);
-        // } else {
-        //   marker.setMap(null);
-        // }
-        // marker.setMap(map);
+]          marker.setMap(map);
       }
       else {
         marker.setVisible(false);
@@ -87,11 +82,23 @@ $(function() {
   // set park markers
   function parkMarkers() {
     parks.forEach(function(park, index) {
-      if (markersSet.parks) {
-         marker = new google.maps.Marker({
-          position: {lat: park.latlng.lat, lng: park.latlng.lng},
-          map: map,
-          title:park.name
+      handleParkExceptions(park);
+      marker = new google.maps.Marker({
+        position: {lat: park.latlng.lat, lng: park.latlng.lng},
+        map: map,
+        title:park.name
+      });
+      if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
+        marker.addListener('click', function(event) {
+        park_content = '<h3>PARK</h3><a href=' + '"' + park.url + '"' + 'target="_blank">' + park.name + '</a> <br>' + park.address;
+          if (infoWindow) {
+            infoWindow.close();
+          }
+          infoWindow = new google.maps.InfoWindow({
+            content: park_content,
+            position: event.latLng
+          });
+          infoWindow.open(map);
         });
         if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
           marker.addListener('click', function(event) {
@@ -204,5 +211,14 @@ $(function() {
 
 
   $checkboxes.on('click', toggleMarkers);
+
+  function handleParkExceptions(park) {
+    if (park.latlng.lat == 47.588951 && park.latlng.lng == -122.378676) {
+      park.latlng = {lat: 47.589440, lng: -122.380639};
+    }
+    else if (park.latlng.lat == 47.58671 && park.latlng.lng == -122.400127) {
+      park.latlng = {lat: 47.58671, lng: -122.397799};
+    }
+  }
 
 });

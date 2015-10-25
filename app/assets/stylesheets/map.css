@@ -1,9 +1,20 @@
 html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,label,legend,p,blockquote,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}body{line-height:1;color:black;background:white;}:focus{outline:0;}table{border-collapse:collapse;border-spacing:0;}caption,th,td{text-align:left;font-weight:normal;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}ol,ul{list-style:none;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}blockquote:before,blockquote:after,q:before,q:after{content:"";}blockquote,q{quotes:"" "";}abbr,acronym{border:0;}
 
+* {
+  font-family:'Arimo', sans-serif;
+}
+
+.scrollFix {
+    line-height: 1.35;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 #map-canvas {
-  width: 700px;
-  height: 700px;
-  /*z-index: 1;*/
+  width: 500px;
+  height: 600px;
+  z-index: 1;
+  border: 2px solid RGBA(109, 121, 145, .3);
 }
 
 #map {
@@ -13,11 +24,10 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 
 .dropdown-container {
   width: 450px;
-  /*height: 138px;*/
 }
 
 .select-main {
-  border: 1px solid black;
+  border: 2px solid RGBA(109, 121, 145, .3);
   width: 300px;
   display: inline-block;
 }
@@ -27,9 +37,9 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 }
 
 .dropdown {
-  border: 1px solid black;
+  border: 2px solid RGBA(109, 121, 145, .3);
   width: 300px;
-  height: 185px;
+  height: 500px;
   overflow-y: scroll;
   margin: 0;
   display: none;
@@ -41,6 +51,7 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 .nhd-link {
   margin: 0;
   padding: 5px;
+
 }
 
 #go {
@@ -52,6 +63,43 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 
 }
 
+.title {
+  font-size: 30px;
+  font-family:'Arimo', sans-serif;
+  padding: 10px;
+  margin-left:20px;
+  float: left;
+}
+
+p {
+  font-size: 15px;
+  font-family:'Arimo', sans-serif;
+  color: RGBA(16, 79, 140, 1);
+}
+
+.navbar-brand {
+  font-size: 30px;
+}
+
+.btn  {
+  font-family:'Arimo', sans-serif;
+}
+
+.about-us {
+  width: 30%;
+  height:40%;
+  font-family:'Arimo', sans-serif;
+  font-size: 20px;
+}
+
+/*#welcome {
+  background-image: url(https://en.wikipedia.org/wiki/Seattle#/media/File:Space_Needle002.jpg);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-attachment: fixed;
+  background-size: cover;
+  margin:0;
+}*/
 /*::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
