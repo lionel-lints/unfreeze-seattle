@@ -1,6 +1,6 @@
 $(function() {
   var map;
-  var marker;
+  // var marker;
   var infoWindow;
   var polygon;
   var $checkboxes = $('input[type=checkbox]');
@@ -19,19 +19,16 @@ $(function() {
     });
   }
 
-  function setMarkers(markerSet) {
-    //markerSet is object of landmark types and boolean values (as markersSet above)
-    //set museum markers
-    console.log(markerSet);
+  //set museum markers
+  function museumMarkers() {
     museums.forEach(function(museum, index) {
-      marker = new google.maps.Marker({
-        position: {lat: museum.latlng.lat, lng: museum.latlng.lng},
-        map: map,
-        title: museum.name
-      });
-      if (markerSet.museums) {
-        console.log(markerSet);
-         if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
+      if (markersSet.museums) {
+        var marker = new google.maps.Marker({
+          position: {lat: museum.latlng.lat, lng: museum.latlng.lng},
+          map: map,
+          title: museum.name
+        });
+        if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
           marker.addListener('click', function(event) {
           museum_content = '<h3>MUSEUM</h3><a href=' + '"' + museum.url + '"' + 'target="_blank">' + museum.name + '</a> <br>' + museum.address;
             if (infoWindow) {
@@ -43,51 +40,58 @@ $(function() {
             });
             infoWindow.open(map);
           });
-          marker.setMap(map);
         } else {
           marker.setVisible(false);
         }
       } else {
-        marker.setMap(null);
+        if (museum) {
+          marker.setMap(null);
+        }
       }
     });
-    //set landmark markers
+  }
+
+  //set landmark markers
+  function landmarkMarkers() {
     landmarks.forEach(function(landmark, index) {
-      marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({
         position: {lat: landmark.latlng.lat, lng: landmark.latlng.lng},
         map: map,
         title:landmark.name
       });
-      if (markerSet.landmarks) {
-        if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
-          marker.addListener('click', function(event) {
-          landmark_content = '<h3>LANDMARK</h3><a href=' + '"' + landmark.url + '"' + 'target="_blank">' + landmark.name + '</a> <br>' + landmark.address;
-            if (infoWindow) {
-              infoWindow.close();
-            }
-            infoWindow = new google.maps.InfoWindow({
-              content: landmark_content,
-              position: event.latLng
-            });
-            infoWindow.open(map);
+      if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
+        marker.addListener('click', function(event) {
+        landmark_content = '<h3>LANDMARK</h3><a href=' + '"' + landmark.url + '"' + 'target="_blank">' + landmark.name + '</a> <br>' + landmark.address;
+          if (infoWindow) {
+            infoWindow.close();
+          }
+          infoWindow = new google.maps.InfoWindow({
+            content: landmark_content,
+            position: event.latLng
           });
+          infoWindow.open(map);
+        });
+        if (markersSet.landmarks) {
           marker.setMap(map);
         } else {
-          marker.setVisible(false);
+          marker.setMap(null);
         }
-      } else {
-        marker.setMap(null);
+      }
+      else {
+        marker.setVisible(false);
       }
     });
-    // set park markers
+  }
+
+  // set park markers
+  function parkMarkers() {
     parks.forEach(function(park, index) {
-      handleParkExceptions(park);
-      marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({
         position: {lat: park.latlng.lat, lng: park.latlng.lng},
         map: map,
         title:park.name
       });
-      if (markerSet.parks) {
+      if (markersSet.parks) {
         if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
           marker.addListener('click', function(event) {
           park_content = '<h3>PARK</h3><a href=' + '"' + park.url + '"' + 'target="_blank">' + park.name + '</a> <br>' + park.address;
@@ -100,26 +104,12 @@ $(function() {
             });
             infoWindow.open(map);
           });
-          if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
-            marker.addListener('click', function(event) {
-            park_content = '<h3>PARK</h3><a href=' + '"' + park.url + '"' + 'target="_blank">' + park.name + '</a> <br>' + park.address;
-              if (infoWindow) {
-                infoWindow.close();
-              }
-              infoWindow = new google.maps.InfoWindow({
-                content: park_content,
-                position: event.latLng
-              });
-              infoWindow.open(map);
-            });
-            marker.setMap(map);
-          } else {
-            marker.setVisible(false);
-          }
+          marker.setMap(map);
         } else {
-          marker.setMap(null);
+          marker.setVisible(false);
         }
       } else {
+        console.log('marker');
         marker.setMap(null);
       }
     });
@@ -144,7 +134,10 @@ $(function() {
     });
 
     polygon = new google.maps.Polygon({paths: polygonCoords});
-    setMarkers(markersSet);
+    //if an array is empty, check or uncheck the box on load and popualte the object accordingly
+    museumMarkers();
+    parkMarkers();
+    landmarkMarkers();
   });
 
   //orient the page to center on the selected neighborhood
@@ -174,47 +167,24 @@ $(function() {
     }
   }
 
-  function toggleMarkers(e) {
+  function toggleHandler(e) {
     var $evt = $(e.target);
     var type = $evt.attr('name');
-    // console.log(type);
+    console.log(type);
     //toggle true or false value in object
     markersSet[type] = !markersSet[type];
     // console.log(markersSet);
-    setMarkers(markersSet);
-    // if (type === 'museums') {
-    //   museumMarkers();
-    // } else if (type === 'landmarks') {
-    //   landmarkMarkers();
-    // } else if (type === 'parks') {
-    //   parkMarkers();
-    // }
-  }
-
-  // function setMarkers(type) {
-  //   //remove markers
-  //   //check object an populate accordingly
-  //       if (markersSet[type]) {
-  //         museumMarkers(true);
-  //       } else {
-  //         museumMarkers(false);
-  //       }
-  //   } else if (type == "landmarks")
-  //     if
-
-  // }
-
-
-
-  $checkboxes.on('click', toggleMarkers);
-
-  function handleParkExceptions(park) {
-    if (park.latlng.lat == 47.588951 && park.latlng.lng == -122.378676) {
-      park.latlng = {lat: 47.589440, lng: -122.380639};
-    }
-    else if (park.latlng.lat == 47.58671 && park.latlng.lng == -122.400127) {
-      park.latlng = {lat: 47.58671, lng: -122.397799};
+    if (type === 'museums') {
+      museumMarkers();
+    } else if (type === 'landmarks') {
+      landmarkMarkers();
+    } else if (type === 'parks') {
+      parkMarkers();
     }
   }
+
+
+
+  $checkboxes.on('click', toggleHandler);
 
 });
