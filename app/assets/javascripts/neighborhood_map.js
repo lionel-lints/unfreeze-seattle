@@ -1,6 +1,7 @@
 $(function() {
   var map;
   // var marker;
+  var file = neighborhood.polygon_url;
   var infoWindow;
   var polygon;
   var $checkboxes = $('input[type=checkbox]');
@@ -12,12 +13,62 @@ $(function() {
 
   //initialize map
   function initMap() {
+    var bounds;
+    var polygonCoords = [];
+
+
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
       center: {lat: 47.6062095, lng: -122.3320708},
       mapTypeId: google.maps.MapTypeId.TERRAIN
     });
+
+    map.data.loadGeoJson(file);
+    map.data.setStyle(function(feature) {
+      return /** @type {google.maps.Data.StyleOptions} */({
+        fillColor: feature.getProperty('color'),
+        strokeWeight: 1
+      });
+    });
+    // zoom to show all the features
+    bounds = new google.maps.LatLngBounds();
+      map.data.addListener('addfeature', function(e) {
+      processPoints(e.feature.getGeometry(), bounds.extend, bounds);
+      map.fitBounds(bounds);
+    });
+    $.get(file, function(data) {
+      geoJSON = JSON.parse(data);
+      coordsArray = geoJSON.features[0].geometry.coordinates[0];
+      coordsArray.forEach(function(singleCoordArray) {
+        coords = {};
+        coords.lat = singleCoordArray[1];
+        coords.lng = singleCoordArray[0];
+        polygonCoords.push(coords);
+      });
+
+      polygon = new google.maps.Polygon({paths: polygonCoords});
+      //if an array is empty, check or uncheck the box on load and popualte the object accordingly
+     //load markers
+     museumMarkers();
+      parkMarkers();
+      landmarkMarkers();
+    });
+
   }
+
+  //orient the page to center on the selected neighborhood
+  function processPoints(geometry, callback, thisArg) {
+    if (geometry instanceof google.maps.LatLng) {
+      callback.call(thisArg, geometry);
+    } else if (geometry instanceof google.maps.Data.Point) {
+      callback.call(thisArg, geometry.get());
+    } else {
+      geometry.getArray().forEach(function(g) {
+        processPoints(g, callback, thisArg);
+      });
+    }
+  }
+
 
   //set museum markers
   function museumMarkers() {
@@ -109,63 +160,22 @@ $(function() {
           marker.setVisible(false);
         }
       } else {
-        console.log('marker');
-        marker.setMap(null);
+        console.log(marker);
+          marker.setVisible(false);
       }
     });
   }
 
-  initMap();
 
-  //load the neighborhood polygons
-  var file = neighborhood.polygon_url;
 
-  map.data.loadGeoJson(file);
 
-  $.get(file, function(data) {
-    geoJSON = JSON.parse(data);
-    coordsArray = geoJSON.features[0].geometry.coordinates[0];
-    var polygonCoords = [];
-    coordsArray.forEach(function(singleCoordArray) {
-      coords = {};
-      coords.lat = singleCoordArray[1];
-      coords.lng = singleCoordArray[0];
-      polygonCoords.push(coords);
-    });
 
-    polygon = new google.maps.Polygon({paths: polygonCoords});
-    //if an array is empty, check or uncheck the box on load and popualte the object accordingly
-    museumMarkers();
-    parkMarkers();
-    landmarkMarkers();
-  });
 
-  //orient the page to center on the selected neighborhood
-  var featureStyle = map.data.setStyle(function(feature) {
-    return /** @type {google.maps.Data.StyleOptions} */({
-      fillColor: feature.getProperty('color'),
-      strokeWeight: 1
-    });
-  });
 
-  // zoom to show all the features
-  var bounds = new google.maps.LatLngBounds();
-  map.data.addListener('addfeature', function(e) {
-    processPoints(e.feature.getGeometry(), bounds.extend, bounds);
-    map.fitBounds(bounds);
-  });
 
-  function processPoints(geometry, callback, thisArg) {
-    if (geometry instanceof google.maps.LatLng) {
-      callback.call(thisArg, geometry);
-    } else if (geometry instanceof google.maps.Data.Point) {
-      callback.call(thisArg, geometry.get());
-    } else {
-      geometry.getArray().forEach(function(g) {
-        processPoints(g, callback, thisArg);
-      });
-    }
-  }
+
+
+
 
   function toggleHandler(e) {
     var $evt = $(e.target);
@@ -183,6 +193,7 @@ $(function() {
     }
   }
 
+  initMap();
 
 
   $checkboxes.on('click', toggleHandler);
