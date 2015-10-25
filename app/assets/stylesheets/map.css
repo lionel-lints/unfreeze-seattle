@@ -3,6 +3,13 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 * {
   font-family:'Arimo', sans-serif;
 }
+
+.scrollFix {
+    line-height: 1.35;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 #map-canvas {
   width: 500px;
   height: 600px;

@@ -60,8 +60,8 @@
       }
       // console.log(event);
       // infoWindow.close();
-        infowindow = new google.maps.InfoWindow({
-        content: event.feature.getProperty('infoW'),
+      infowindow = new google.maps.InfoWindow({
+        content: '<div class="scrollFix">' + event.feature.getProperty('infoW') + '</div>',
         position: event.latLng
       });
       infowindow.open(map);
