@@ -3,7 +3,7 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 #map-canvas {
   width: 700px;
   height: 700px;
-  z-index: 1;
+  /*z-index: 1;*/
 }
 
 #map {
