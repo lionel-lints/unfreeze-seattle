@@ -3,6 +3,13 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 * {
   font-family:'Arimo', sans-serif;
 }
+
+.scrollFix {
+    line-height: 1.35;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 #map-canvas {
   width: 500px;
   height: 600px;
@@ -77,7 +84,21 @@ p {
   font-family:'Arimo', sans-serif;
 }
 
+.about-us {
+  width: 30%;
+  height:40%;
+  font-family:'Arimo', sans-serif;
+  font-size: 20px;
+}
 
+/*#welcome {
+  background-image: url(https://en.wikipedia.org/wiki/Seattle#/media/File:Space_Needle002.jpg);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-attachment: fixed;
+  background-size: cover;
+  margin:0;
+}*/
 /*::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
