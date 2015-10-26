@@ -18,7 +18,6 @@ $(function() {
     var bounds;
     var polygonCoords = [];
 
-
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
       center: {lat: 47.6062095, lng: -122.3320708},
@@ -54,11 +53,10 @@ $(function() {
 
       //if an array is empty, check or uncheck the box on load and popualte the object accordingly
      //load markers
-      museumMarkers();
-      parkMarkers();
-      landmarkMarkers();
+     setMarkers(parks, 'parks');
+     setMarkers(museums, 'museums');
+     setMarkers(landmarks, 'landmarks');
     });
-
   }
 
   //orient the page to center on the selected neighborhood
@@ -74,107 +72,65 @@ $(function() {
     }
   }
 
-
-  //set museum markers
-  function museumMarkers() {
-    // if (markersSet.museums) {
-      museums.forEach(function(museum, index) {
-        var marker = new google.maps.Marker({
-          position: {lat: museum.latlng.lat, lng: museum.latlng.lng},
-          map: map,
-          title: museum.name
-        });
-        if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
-          marker.addListener('click', function(event) {
-          museum_content = '<h3>MUSEUM</h3><a href=' + '"' + museum.url + '"' + 'target="_blank">' + museum.name + '</a> <br>' + museum.address;
-            if (infoWindow) {
-              infoWindow.close();
-            }
-            infoWindow = new google.maps.InfoWindow({
-              content: museum_content,
-              position: event.latLng
-            });
-            infoWindow.open(map);
-          });
-          marker.type = 'museums';
-          marker.setMap(map);
-          markers.push(marker);
-        } else {
-          marker.setMap(null);
-        }
-      });
-    // } else {
-    //   markers.forEach(function(marker) {
-    //     marker.setVisible(false);
-    //   });
-    // }
-  }
-
-  //set landmark markers
-  function landmarkMarkers() {
-    landmarks.forEach(function(landmark, index) {
+  //Create markers on map
+  function setMarkers(featureArray, type) {
+    featureArray.forEach(function(feature) {
       var marker = new google.maps.Marker({
-        position: {lat: landmark.latlng.lat, lng: landmark.latlng.lng},
+        position: feature.latlng,
         map: map,
-        title:landmark.name
+        title: feature.name
       });
       if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
-        marker.addListener('click', function(event) {
-        landmark_content = '<h3>LANDMARK</h3><a href=' + '"' + landmark.url + '"' + 'target="_blank">' + landmark.name + '</a> <br>' + landmark.address;
-          if (infoWindow) {
-            infoWindow.close();
-          }
-          infoWindow = new google.maps.InfoWindow({
-            content: landmark_content,
-            position: event.latLng
-          });
-          infoWindow.open(map);
-        });
-        marker.type = 'landmarks';
-        marker.setMap(map);
-        markers.push(marker);
+        createInfoWindow(feature, marker, type);
+        setSingleMarker(marker, type);
       } else {
         marker.setMap(null);
       }
     });
   }
 
-  // set park markers
-  function parkMarkers() {
-    parks.forEach(function(park, index) {
-        var marker = new google.maps.Marker({
-          position: {lat: park.latlng.lat, lng: park.latlng.lng},
-          map: map,
-          title:park.name
-        });
-        if (google.maps.geometry.poly.containsLocation(marker.position, polygon)) {
-          marker.addListener('click', function(event) {
-          park_content = '<h3>PARK</h3><a href=' + '"' + park.url + '"' + 'target="_blank">' + park.name + '</a> <br>' + park.address;
-            if (infoWindow) {
-              infoWindow.close();
-            }
-            infoWindow = new google.maps.InfoWindow({
-              content: park_content,
-              position: event.latLng
-            });
-            infoWindow.open(map);
-          });
-          marker.type = 'parks';
-          marker.setMap(map);
-          markers.push(marker);
-        } else {
-          marker.setMap(null);
-        }
+  //Create Marker Content
+  function selectMarkerContent(feature, type) {
+    var contentTail = '<a href=' + '"' + feature.url + '"' + 'target="_blank">' + feature.name + '</a> <br>' + feature.address;
+    if (type === 'museums') {
+      return '<h3>MUSEUM</h3>' + contentTail;
+    }
+    else if (type === 'parks') {
+      return '<h3>PARK</h3>' + contentTail;
+    }
+    else {
+      return '<h3>LANDMARK</h3>' + contentTail;
+    }
+  }
+
+  //Create InfoWindow on each marker
+  function createInfoWindow(feature, marker, type) {
+    marker.addListener('click', function(event) {
+      markerContent = selectMarkerContent(feature, type);
+      if (infoWindow) {
+        infoWindow.close();
+      }
+      infoWindow = new google.maps.InfoWindow({
+        content: markerContent,
+        position: event.latLng
+      });
+      infoWindow.open(map);
     });
   }
 
+  //Set marker on map and push into markers array
+  function setSingleMarker(marker, type) {
+    marker.type = type;
+    marker.setMap(map);
+    markers.push(marker);
+  }
+
+  //Handle marker type toggling
   function toggleHandler(e) {
     var $evt = $(e.target);
     var type = $evt.attr('name');
-    console.log(type);
     //toggle true or false value in object
     markersSet[type] = !markersSet[type];
-    console.log(markersSet);
     if (markersSet[type]) {
       toggleMarkers(type, true);
     } else {
@@ -182,11 +138,7 @@ $(function() {
     }
   }
 
-  initMap();
-
-
-  $checkboxes.on('click', toggleHandler);
-
+  //Toggle the markers
   function toggleMarkers(type, onOff) {
     markers.forEach(function(marker) {
       if (marker.type === type) {
@@ -194,5 +146,10 @@ $(function() {
       }
     });
   }
+
+  //Marker type toggle event handler
+  $checkboxes.on('click', toggleHandler);
+
+  initMap();
 
 });
