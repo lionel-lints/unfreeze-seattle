@@ -22,6 +22,11 @@ Rake / DB seeding / Workers
 Events
 
 
+Map
+
+  Marker Icons
+
+
 
 
 
