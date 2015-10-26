@@ -51,6 +51,17 @@ $(function() {
 
       //if an array is empty, check or uncheck the box on load and popualte the object accordingly
      //load markers
+     if (museums.length) {
+      console.log(museums.length)
+      $checkboxes
+     }
+     if (parks.length) {
+      console.log(parks.length)
+     }
+
+     if (landmarks.length) {
+      console.log(landmarks.length)
+     }
      setMarkers(parks, 'parks');
      setMarkers(museums, 'museums');
      setMarkers(landmarks, 'landmarks');
