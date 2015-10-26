@@ -7,6 +7,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
+h2 {
+  font-size: 40px;
+  color: #F6C124;
+}
+
 p {
   font-size: 18px;
   line-height: 21px;
@@ -26,6 +31,28 @@ p {
   font-size: 30px;
   font-family:'Montserrat', sans-serif;
   color: #F6C124;
+}
+
+.btn  {
+  font-family:'Hind', sans-serif;
+}
+/*----------------nav bar---------------------*/
+
+#new-nav{
+  margin-bottom: 40px;
+  background-color: white;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  font-family:'Montserrat', sans-serif;
+}
+
+.navbar-right{
+  font-size: 18px;
+  line-height: 21px;
+  font-family:'Hind', sans-serif;
+  font-weight: 400;
 }
 
 /*-----------------Map Styles-----------------*/
@@ -92,33 +119,17 @@ p {
 
 }
 
-/*----------------nav bar---------------------*/
-.navbar {
-  padding: 20px;
-}
-
-.navbar-brand {
-  font-size: 30px;
-  font-family:'Montserrat', sans-serif;
-}
-
-.btn  {
-  font-family:'Hind', sans-serif;
-}
-
-.about-us {
-  width: 30%;
-  height:40%;
-  font-family:'Hind', sans-serif;
-  font-size: 20px;
-}
 
 /*<----------------------------- show page css------------------------->*/
 
-.container, .container-fluid {
+.container {
   width: 80%;
   margin: 0 auto 0 auto;
   padding: 10px;
+}
+.container-fluid {
+  width: 80%;
+  margin: 0 auto 0 auto;
 }
 
 .right-column {
@@ -160,4 +171,29 @@ button {
   padding: 2%;
   background-color:white;
   border: solid 1px #d3d3d3;
+}
+/*------------------about page -------------------*/
+.jumbotron{
+  width: 50%;
+  margin:0 auto;
+}
+.about-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  color: #F6C124;
+  margin-bottom: 30px;
+}
+.welcome-text {
+  text-transform: uppercase;
+  text-weight: bold;
+  font-size: 20px;
+}
+
+
+/*------------------contact page -------------------*/
+.about-us {
+  width: 30%;
+  height:40%;
+  font-family:'Hind', sans-serif;
+  font-size: 20px;
 }
