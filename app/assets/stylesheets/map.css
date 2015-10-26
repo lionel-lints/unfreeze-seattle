@@ -1,7 +1,18 @@
 html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,label,legend,p,blockquote,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}body{line-height:1;color:black;background:white;}:focus{outline:0;}table{border-collapse:collapse;border-spacing:0;}caption,th,td{text-align:left;font-weight:normal;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}ol,ul{list-style:none;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}blockquote:before,blockquote:after,q:before,q:after{content:"";}blockquote,q{quotes:"" "";}abbr,acronym{border:0;}
 
-* {
-  font-family:'Arimo', sans-serif;
+
+p {
+  font-family: 'Hind', sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+#new-nav {
+  background-color: green, important!;
 }
 
 .scrollFix {
@@ -18,8 +29,9 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 }
 
 #map {
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 450px;
+  border: 2px solid RGBA(109, 121, 145, .3);
 }
 
 .dropdown-container {
@@ -65,31 +77,57 @@ html,body,div,span,applet,object,iframe,a,abbr,acronym,address,big,cite,code,del
 
 .title {
   font-size: 30px;
-  font-family:'Arimo', sans-serif;
+  font-family:'Montserrat', sans-serif;
   padding: 10px;
   margin-left:20px;
 }
 
 p {
-  font-size: 15px;
-  font-family:'Arimo', sans-serif;
-  color: RGBA(16, 79, 140, 1);
+  font-size: 18px;
+  line-height: 21px;
+  font-family:'Hind', sans-serif;
+  margin-bottom: 20px;
+  color: #565a5c;
 }
 
 .navbar-brand {
   font-size: 30px;
+  font-family:'Montserrat', sans-serif;
 }
 
 .btn  {
-  font-family:'Arimo', sans-serif;
+  font-family:'Hind', sans-serif;
 }
 
 .about-us {
   width: 30%;
   height:40%;
-  font-family:'Arimo', sans-serif;
+  font-family:'Hind', sans-serif;
   font-size: 20px;
 }
+
+/*<----------------------------- show page css------------------------->*/
+
+.comtainer {
+  width: 80%;
+  height: 600px;
+  background: aqua;
+  margin: auto;
+  padding: 10px;
+}
+
+.right-column {
+  float: right;
+  width: 40%;
+  margin-right: 2%;
+}
+
+.left-column {
+  float:left;
+  width: 40%;
+}
+
+
 
 /*#welcome {
   background-image: url(https://en.wikipedia.org/wiki/Seattle#/media/File:Space_Needle002.jpg);

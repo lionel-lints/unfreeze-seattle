@@ -1,14 +1,23 @@
-<h1><%= @neighborhood[:display_name] %></h1>
+<h1 class="title"><%= @neighborhood[:display_name] %></h1>
 <br>
-<div id="map"></div>
-  <div>
-    <label>Landmarks<input type="checkbox" name="landmark" value="datalayer"></label>
-    <label>Museums<input type="checkbox" name="museum" value="museum"></label>
-    <label>Parks<input type="checkbox"name="park"value="park"></label>
-    <button type=reset id="button" value="reset">Reset Map</button><br><br>
+<div class="container">
+  <div class="right-column">
+    <div class="map-legend">
+      <label>
+        <button class="btn" type="checkbox" name="landmark" value="datalayer">
+          Landmarks
+        </button>
+      </label>
+      <label><button class="btn" type="checkbox" name="museum" value="datalayer">Museums</button></label>
+      <label><button class="btn" type="checkbox" name="park" value="datalayer">Parks</button></label>
+      <button type=reset id="button" value="reset">Reset Map</button><br><br>
+    </div>
+    <div id="map"></div>
   </div>
-
-<%= raw(@wiki) %>
+  <div class="left-column">
+    <p><%= raw(@wiki) %></p>
+  </div>
+</div>
 
 <script type="text/javascript">
   var neighborhood = {};
@@ -54,5 +63,3 @@
 
 
 <%= javascript_include_tag "neighborhood_map" %>
-
-
