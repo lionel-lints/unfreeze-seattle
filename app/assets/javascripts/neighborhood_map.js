@@ -49,11 +49,11 @@ $(function() {
 
       polygon = new google.maps.Polygon({paths: polygonCoords});
 
-     //if an array is empty, check or uncheck the box on load and popualte the object accordingly
+      //if an array is empty, check or uncheck the box on load and popualte the object accordingly
      //load markers
-      setMarkersOrDisableCheckboxes(parks, 'parks');
-      setMarkersOrDisableCheckboxes(museums, 'museums');
-      setMarkersOrDisableCheckboxes(landmarks, 'landmarks');
+      setMarkers(parks, 'parks');
+      setMarkers(museums, 'museums');
+      setMarkers(landmarks, 'landmarks');
     });
   }
 
@@ -69,21 +69,6 @@ $(function() {
       });
     }
   }
-
-  function setMarkersOrDisableCheckboxes(markerArray, type) {
-    if (markerArray.length !== 0) {
-      setMarkers(markerArray, type);
-    } else {
-/*      $checkboxes.each(function(index, $checkbox) {
-        console.log($checkbox);
-        if ($checkbox.attr('name') === type) {
-          $checkbox.prop('unchecked');
-        }
-      });*/
-      console.log($checkboxes.find('name').val(type));
-    }
-  }
-
 
   //Create markers on map
   function setMarkers(featureArray, type) {
@@ -143,6 +128,29 @@ $(function() {
     var $evt = $(e.target);
     var type = $evt.attr('name');
     //toggle true or false value in object
+    markersSet[type] = !markersSet[type];
+    if (markersSet[type]) {
+      toggleMarkers(type, true);
+    } else {
+      toggleMarkers(type, false);
+    }
+  }
+
+  //Toggle the markers
+  function toggleMarkers(type, onOff) {
+    markers.forEach(function(marker) {
+      if (marker.type === type) {
+        marker.setVisible(onOff);
+      }
+    });
+  }
+
+  //Marker type toggle event handler
+  $checkboxes.on('click', toggleHandler);
+
+  initMap();
+
+});se value in object
     markersSet[type] = !markersSet[type];
     if (markersSet[type]) {
       toggleMarkers(type, true);
