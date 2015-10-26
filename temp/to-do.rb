@@ -19,6 +19,11 @@ Rake / DB seeding / Workers
   Refactor all workers to just have one worker?
 
 
+Events
+
+
+
+
 
 Misc / Notes
   rake db:drop; rake db:create; rake db:migrate; rake db:seed:neighborhoods; rake db:seed:parks; rake db:seed:landmarks; rake db:seed:museums; rake db:seed:wikis
