@@ -49,11 +49,11 @@ $(function() {
 
       polygon = new google.maps.Polygon({paths: polygonCoords});
 
-      //if an array is empty, check or uncheck the box on load and popualte the object accordingly
+     //if an array is empty, check or uncheck the box on load and popualte the object accordingly
      //load markers
-     setMarkers(parks, 'parks');
-     setMarkers(museums, 'museums');
-     setMarkers(landmarks, 'landmarks');
+      setMarkersOrDisableCheckboxes(parks, 'parks');
+      setMarkersOrDisableCheckboxes(museums, 'museums');
+      setMarkersOrDisableCheckboxes(landmarks, 'landmarks');
     });
   }
 
@@ -69,6 +69,21 @@ $(function() {
       });
     }
   }
+
+  function setMarkersOrDisableCheckboxes(markerArray, type) {
+    if (markerArray.length !== 0) {
+      setMarkers(markerArray, type);
+    } else {
+/*      $checkboxes.each(function(index, $checkbox) {
+        console.log($checkbox);
+        if ($checkbox.attr('name') === type) {
+          $checkbox.prop('unchecked');
+        }
+      });*/
+      console.log($checkboxes.find('name').val(type));
+    }
+  }
+
 
   //Create markers on map
   function setMarkers(featureArray, type) {
