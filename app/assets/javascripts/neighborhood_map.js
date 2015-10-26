@@ -71,16 +71,13 @@ $(function() {
   }
 
   function setMarkersOrDisableCheckboxes(markerArray, type) {
+    var $checkbox = ($('input[name=' + type + ']'));
     if (markerArray.length !== 0) {
       setMarkers(markerArray, type);
+      $checkbox.prop('checked', true);
     } else {
-/*      $checkboxes.each(function(index, $checkbox) {
-        console.log($checkbox);
-        if ($checkbox.attr('name') === type) {
-          $checkbox.prop('unchecked');
-        }
-      });*/
-      console.log($checkboxes.find('name').val(type));
+      $checkbox.prop('checked', false);
+      $checkbox.prop('disabled', true);
     }
   }
 
