@@ -1,6 +1,5 @@
 $(function() {
   var map;
-  // var marker;
   var file = neighborhood.polygon_url;
   var infoWindow;
   var polygon;
@@ -10,7 +9,6 @@ $(function() {
     'museums': true,
     'parks': true
   };
-  var markerId = 0;
   var markers = [];
 
   //initialize map
